@@ -1,11 +1,35 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
+}
+
+model Poster {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  description String
+  imageUrl    String
+  name        String
+  price       Int
+  createAt    DateTime @default(now())
+  updateAt    DateTime @updatedAt
+
+  @@map("posters")
+}
+
+model Trailer {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  casts       String
+  description String
+  genre       String
+  name        String
+  releasedate String
+  trailerurl  String
+  imageUrl    String
+  createAt    DateTime @default(now())
+  updateAt    DateTime @updatedAt
+
+  @@map("trailer")
 }

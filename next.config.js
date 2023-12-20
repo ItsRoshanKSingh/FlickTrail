@@ -5,6 +5,10 @@ module.exports = {
         protocol: "https",
         hostname: "daisyui.com",
       },
+      {
+        protocol: "https",
+        hostname: "tailwindui.com",
+      },
     ],
   },
 };
