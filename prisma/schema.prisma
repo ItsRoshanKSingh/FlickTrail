@@ -8,13 +8,14 @@ datasource db {
 }
 
 model Poster {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
   description String
   imageUrl    String
   name        String
   price       Int
-  createAt    DateTime @default(now())
-  updateAt    DateTime @updatedAt
+  createAt    DateTime   @default(now())
+  updateAt    DateTime   @updatedAt
+  CartItem    CartItem[]
 
   @@map("posters")
 }
@@ -32,4 +33,24 @@ model Trailer {
   updateAt    DateTime @updatedAt
 
   @@map("trailer")
+}
+
+model Cart {
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  items    CartItem[]
+  createAt DateTime   @default(now())
+  updateAt DateTime   @updatedAt
+
+  @@map("carts")
+}
+
+model CartItem {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  postertId String @db.ObjectId
+  poster    Poster @relation(fields: [postertId], references: [id], onDelete: Cascade)
+  quantity  Int
+  cartId    String @db.ObjectId
+  cart      Cart   @relation(fields: [cartId], references: [id], onDelete: Cascade)
+
+  @@map("cartitems")
 }
