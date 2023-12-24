@@ -23,5 +23,5 @@ export default async function incrementProductQuantity(postertId: string) {
       },
     });
   }
-  revalidatePath("/poster/[id]");
+  revalidatePath("/poster/[id]", "page");
 }
