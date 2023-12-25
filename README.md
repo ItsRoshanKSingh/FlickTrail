@@ -27,7 +27,9 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ### DataBase
+
 https://cloud.mongodb.com/
 
 ### Prisma
+
 npx prisma init
