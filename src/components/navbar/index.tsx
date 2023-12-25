@@ -2,9 +2,14 @@ import { getCart } from "@/lib/db/cart";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import UserProfileButton from "../user_profile";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const Navbar = async () => {
   const cart = await getCart();
+  const session = await getServerSession(authOptions);
+
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -122,39 +127,7 @@ const Navbar = async () => {
               </div>
             </div>
           </div>
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 rounded-full">
-                <Image
-                  alt="Tailwind CSS Navbar component"
-                  src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                  width={600}
-                  height={400}
-                />
-              </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <Link href="/profile" className="justify-between">
-                  Profile
-                  {/* <span className="badge">New</span> */}
-                </Link>
-              </li>
-              <li>
-                <Link href="/Settings">Settings</Link>
-              </li>
-              <li>
-                <Link href={"/"}>Logout</Link>
-              </li>
-            </ul>
-          </div>
+          <UserProfileButton session={session} />
         </div>
       </div>
     </div>
