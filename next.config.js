@@ -9,6 +9,11 @@ module.exports = {
         protocol: "https",
         hostname: "tailwindui.com",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
+
     ],
   },
 };
